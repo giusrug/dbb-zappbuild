@@ -177,9 +177,10 @@ options:
 	cli.wrkDir(longOpt:'workDir', args:1, 'Absolute path to the build output root directory for user build')
 	cli.t(longOpt:'team', args:1, argName:'hlq', 'Team build hlq for user build syslib concatenations')
 	cli.zTest(longOpt:'runzTests', args:1, 'Specify if zUnit Tests should be run "True", or not run "False"')
-
-	// debug option
+	
+	// debug options
 	cli.d(longOpt:'debug', 'Flag to indicate a build for debugging')
+	cli.cc(longOpt:'ccczUnit', 'Flag to indicate to collect code coverage report during user build.')
 	
 	// utility options
 	cli.help(longOpt:'help', 'Prints this message')
@@ -290,6 +291,9 @@ def populateBuildProperties(String[] args) {
 	
 	// set debug flag
 	if(opts.d) props.debug = 'true'
+	
+	// set code coverage flag
+	if(opts.cc) props.codeCoverage = 'true'
 	
 	// set DBB configuration properties
 	if (opts.url) props.'dbb.RepositoryClient.url' = opts.url
